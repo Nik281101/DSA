@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node {
+    int data;
+    Node *left,*right;
+};
+
+Node* insert(Node* r,int x) {
+    if(!r) return new Node{x,NULL,NULL};
+    if(x<r->data) r->left=insert(r->left,x);
+    else r->right=insert(r->right,x);
+    return r;
+}
+
+int height(Node* r) {
+    if(!r) return 0;
+    return 1+max(height(r->left),height(r->right));
+}
+
+int depth(Node* r,int x,int d=0) {
+    if(!r) return -1;
+    if(r->data==x) return d;
+    if(x<r->data) return depth(r->left,x,d+1);
+    return depth(r->right,x,d+1);
+}
+
+int main() {
+    Node *root=NULL;
+    int a[]={50,30,70,20,40,60,80};
+
+    for(int x:a) root=insert(root,x);
+
+    cout<<"Height: "<<height(root);
+    cout<<"\nDepth: "<<depth(root,40);
+}
