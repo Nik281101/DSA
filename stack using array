@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int st[100], top=-1;
+
+void push(int x) {
+    st[++top]=x;
+}
+
+void pop() {
+    if(top==-1) cout<<"Underflow";
+    else cout<<st[top--];
+}
+
+void display() {
+    for(int i=top;i>=0;i--)
+        cout<<st[i]<<" ";
+}
+
+int main() {
+    push(10);
+    push(20);
+    push(30);
+    display();
+    cout<<"\nPopped: ";
+    pop();
+}
